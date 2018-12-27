@@ -1,0 +1,17 @@
+server:
+  port: 9041
+
+spring:
+  application:
+    name: mycloud-discovery
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:9040/eureka/
+  server:
+    # 自我保护
+    enable-self-preservation: false
+    # 清理间隔，默认60000毫秒
+    eviction-interval-timer-in-ms: 60000
