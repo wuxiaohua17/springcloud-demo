@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cn.com.ut.demo.entity.Order;
 
 @FeignClient(value = "mycloud-order")
-public interface MyOrderClient {
+public interface OrderClient {
 
     @GetMapping(value = "/order/getByOrderId")
     public Order getByOrderId(@RequestParam(value = "orderId") String orderId);

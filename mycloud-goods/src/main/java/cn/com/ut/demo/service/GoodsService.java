@@ -8,8 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 ;
 
@@ -43,4 +47,27 @@ public class GoodsService {
 		goodsRepository.save(goods);
 	}
 
+	public Goods getGoodsByIdCase(String goodsId, String exception, boolean skipException,
+			Long sleep, Integer statusCode) {
+
+		// 异常
+		if (exception != null && !exception.trim().equals("")) {
+			if ("npe".equals(exception))
+				throw new NullPointerException("NullPointerException");
+			else
+				throw new RuntimeException("RuntimeException");
+		}
+
+		// sleep
+		if (sleep != null && sleep > 0L) {
+
+			try {
+				TimeUnit.MILLISECONDS.sleep(sleep);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return getById(goodsId);
+	}
 }

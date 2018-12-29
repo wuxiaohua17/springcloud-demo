@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: mycloud-order
+  cloud:
+    circuit:
+      breaker:
+        enabled: true
 
   jpa:
     show-sql: true
@@ -65,10 +69,6 @@ logging:
     root: INFO
   file: D:/logs/${spring.application.name}/${spring.application.name}.log
 
-feign:
-  okhttp:
-    enabled: true
-
 rocketmq:
   namesrv:
     addr: 192.168.105.80:9876
@@ -84,3 +84,32 @@ eureka:
     lease-expiration-duration-in-seconds: 90
 
 management.security.enabled: false
+
+feign:
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+  hystrix:
+    enabled: true
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+
+resttemplate:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
+
+#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 15000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy:  THREAD #SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 5000
+

@@ -1,5 +1,6 @@
 package cn.com.ut;
 
+import org.junit.Test;
 
 /**
  * @author wuxiaohua
@@ -7,5 +8,8 @@ package cn.com.ut;
  */
 public class TestCase {
 
+	@Test
+	public void test() {
 
+	}
 }

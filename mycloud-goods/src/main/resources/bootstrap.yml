@@ -1,0 +1,8 @@
+logging:
+  level:
+    root: INFO
+    cn.com.ut: DEBUG
+    org.hibernate: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  file: D:/logs/${spring.application.name}/${spring.application.name}.log
