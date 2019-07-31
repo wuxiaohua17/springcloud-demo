@@ -1,5 +1,7 @@
 package cn.com.ut.demo.dto;
 
+import java.util.Set;
+
 import lombok.Data;
 
 /**
@@ -9,7 +11,8 @@ import lombok.Data;
 @Data
 public class GoodsDTO {
 
-    private String goodsId;
-    private String goodsName;
-    private OrderDTO orderDTO;
+	private String goodsId;
+	private String goodsName;
+	private Set<String> keywords;
+	private OrderDTO orderDTO;
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProperty scope="context" name="application" source="spring.application.name" defaultValue="biz"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%red(%d{yyyy-MM-dd HH:mm:ss.SSS}) %highlight(%-5level) %green([%thread]) %boldYellow(%logger{10}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <file>D:/logs/${application}/${application}.log</file>
+
+        <!-- <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>D:/logs/${application}/${application}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>100</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <!-- <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %caller{1} - %msg%n</pattern> -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{10} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>256</queueSize>
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <logger name="cn.com.ut" level="DEBUG"/>
+    <!-- <logger name="org.hibernate" level="INFO"/>
+     <logger name="org.hibernate.SQL" level="DEBUG"/>
+     <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>-->
+    <logger name="org.redisson.connection.DNSMonitor" level="OFF"/>
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="druid.sql.Statement" level="DEBUG"/>
+    <logger name="jdbc.connection" level="OFF"/>
+    <logger name="jdbc.resultset" level="OFF"/>
+    <logger name="jdbc.resultsettable" level="OFF"/>
+    <logger name="jdbc.audit" level="OFF"/>
+    <logger name="jdbc.sqltiming" level="OFF"/>
+    <logger name="jdbc.sqlonly" level="INFO"/>
+
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

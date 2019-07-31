@@ -106,11 +106,23 @@
         </dependency>
 
         <!-- DataSource -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.github.drtrang</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.10</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.16</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.bgee.log4jdbc-log4j2</groupId>
+            <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+            <version>1.16</version>
+        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -122,6 +134,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+
+        <!-- reids -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- <dependency>
+             <groupId>cn.com.ut</groupId>
+             <artifactId>esf-distributed-redisson</artifactId>
+             <version>0.0.5-SNAPSHOT</version>
+         </dependency>-->
 
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -135,6 +159,19 @@
             <artifactId>rocketmq-client</artifactId>
             <version>4.3.2</version>
         </dependency>
+
+        <!-- <dependency>
+             <groupId>com.googlecode.log4jdbc</groupId>
+             <artifactId>log4jdbc</artifactId>
+             <version>1.2</version>
+         </dependency>-->
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.5.16</version>
+        </dependency>
+
 
     </dependencies>
 

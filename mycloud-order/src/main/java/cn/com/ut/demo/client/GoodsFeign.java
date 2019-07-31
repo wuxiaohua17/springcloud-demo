@@ -1,10 +1,8 @@
 package cn.com.ut.demo.client;
 
-import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import cn.com.ut.FeignConfig;
 import cn.com.ut.demo.entity.Goods;
 
 /**

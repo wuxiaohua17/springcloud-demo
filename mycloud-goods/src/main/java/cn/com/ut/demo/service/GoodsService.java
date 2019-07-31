@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,9 +29,15 @@ public class GoodsService {
 	@Autowired
 	private GoodsRepository goodsRepository;
 
+	public Goods getOne(String goodsId) {
+
+		return getById(goodsId);
+	}
+
+	@Transactional
 	public Goods getById(String goodsId) {
 
-		return goodsRepository.findOne(goodsId);
+		return goodsRepository.findByGoodsId(goodsId);
 	}
 
 	/**

@@ -76,7 +76,7 @@ rocketmq:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:9040/eureka/,http://localhost:9041/eureka/
+      defaultZone: http://localhost:9040/eureka/
   instance:
     instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
     prefer-ip-address: true

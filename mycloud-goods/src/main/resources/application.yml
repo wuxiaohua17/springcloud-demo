@@ -6,15 +6,20 @@ spring:
     name: mycloud-goods
 
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       naming:
         strategy: org.hibernate.cfg.ImprovedNamingStrategy
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
     generate-ddl: false
+
+  redis:
+    port: 6379
+    host: 192.168.105.80
+    database: 0
 
   datasource:
     druid:
@@ -23,42 +28,63 @@ spring:
       validation-query: SELECT 1
       use-global-data-source-stat: true
       # 默认开启，当前已开启
-      stat:
-        log-slow-sql: true
-        slow-sql-millis: 1000
-      # 默认关闭，需手动开启，当前已开启
-      slf4j:
-        enabled: true
-        data-source-log-enabled: false
-        connection-log-enabled: false
-        statement-log-enabled: false
-        result-set-log-enabled: false
-      # 默认关闭，需手动开启，当前已开启
-      wall:
-        enabled: true
-        log-violation: true
-        throw-exception: false
-        config:
-          delete-where-none-check: true
+#      stat:
+#        log-slow-sql: true
+#        slow-sql-millis: 1000
+#      # 默认关闭，需手动开启，当前已开启
+#      slf4j:
+#        enabled: true
+#        data-source-log-enabled: false
+#        connection-log-enabled: false
+#        statement-log-enabled: true
+#        result-set-log-enabled: false
+#        statement-executable-sql-log-enable: true
+#      # 默认关闭，需手动开启，当前已开启
+#      wall:
+#        enabled: true
+#        log-violation: true
+#        throw-exception: false
+#        config:
+#          delete-where-none-check: true
+#      # 默认关闭，需手动开启，当前已关闭
+#      config:
+#        enabled: false
+#      # 默认关闭，需手动开启，当前已关闭
+#      web-stat:
+#        enabled: false
+#      # 默认关闭，需手动开启，当前已关闭
+#      aop-stat:
+#        enabled: false
       # 默认关闭，需手动开启，当前已关闭
-      config:
-        enabled: false
-      # 默认关闭，需手动开启，当前已关闭
-      web-stat:
-        enabled: false
-      # 默认关闭，需手动开启，当前已关闭
-      aop-stat:
-        enabled: false
-      # 默认关闭，需手动开启，当前已关闭
+      filter:
+        slf4j:
+          enabled: false
+          statement-create-after-log-enabled: false
+          statement-close-after-log-enabled: false
+          result-set-open-after-log-enabled: false
+          result-set-close-after-log-enabled: false
+          connectionLogEnabled: false
+          statementLogEnabled: true
+          resultSetLogEnabled: false
+          statementExecutableSqlLogEnable: true
       stat-view-servlet:
         enabled: true
         login-username: admin
         reset-enable: true
         login-password: 123456
 
-      url: jdbc:mysql://192.168.105.80:3306/messagedemo2?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      url: jdbc:log4jdbc:mysql://192.168.105.80:3306/messagedemo2?useUnicode=true&characterEncoding=UTF-8&useSSL=false
       username: root
       password: 123456
+      driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+
+cache:
+  expires:
+    goodsdemo: 30
+    orderdemo: 300
+
+redisson:
+  singleServer: 192.168.105.80:6379
 
 rocketmq:
   namesrv:
